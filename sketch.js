@@ -27,8 +27,11 @@ var speed = 3.4;
 var distance = 300;
 
 var ending = false;
+var sound;
 
 function preload() {
+  sound = loadSound('data/larb.m4a');
+
   for (var i = 0; i < 85; i++) {
     images[i] = loadImage("data/" + (i + 1) + ".jpg");
   }
@@ -36,15 +39,16 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  sound.play();
 }
 
 function draw() {
 
   background(0);
 
-  display(250, height/2, choice1);
-  display(675, height/2, choice2);
-  display(1100, height/2, choice3);
+  display(250, height / 2, choice1);
+  display(675, height / 2, choice2);
+  display(1100, height / 2, choice3);
 
   countDown1 = countDown1 + speed;
   countDown2 = countDown2 + speed;
@@ -82,8 +86,8 @@ function draw() {
     }
   }
 
-  var startY = height/2-imgH/2;
-  var endY = height/2+imgH/2;
+  var startY = height / 2 - imgH / 2;
+  var endY = height / 2 + imgH / 2;
 
 
   for (var x = 0; x < imgW; x = x + resolution) {
