@@ -1,7 +1,4 @@
-//PImage[] images = new PImage[87];
 var images = [];
-
-var c = 255;
 
 var imgW = 1350;
 var imgH = 400;
@@ -15,14 +12,12 @@ var countDown3 = 100;
 
 var finalCount;
 
-var c;
+var c = 0;
 var d;
 
 var resolution = 20;
 
 var speed = 3.4;
-
-// seems like speed could be slightly slower. Will have to tweak.
 
 var distance = 300;
 
@@ -30,7 +25,7 @@ var ending = false;
 var sound;
 
 function preload() {
-  sound = loadSound('data/larb.m4a');
+  sound = loadSound('data/LARBshorter2.m4a');
 
   for (var i = 0; i < 85; i++) {
     images[i] = loadImage("data/" + (i + 1) + ".jpg");
@@ -40,9 +35,12 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   sound.play();
+  
+  
 }
 
 function draw() {
+  
 
   background(0);
 
@@ -69,40 +67,45 @@ function draw() {
 
   finalCount = finalCount + 1;
 
-  // Dan. Is this how you would set a timer to end the project?
-  // If you can think of a better way, please let me know.
-  // Thanks.
-
-  if (finalCount > 7 * 60 * frameRate) {
+  if (sound.currentTime() > sound.duration() - 22) {
     ending = true;
   }
 
   if (ending) {
 
-    if (distance > 0) {
+    if (distance > 5) {
       distance = distance - 1;
     } else {
-      distance = 0;
+      distance = 5;
     }
   }
 
   var startY = height / 2 - imgH / 2;
   var endY = height / 2 + imgH / 2;
 
-
   for (var x = 0; x < imgW; x = x + resolution) {
     for (var y = startY; y < endY; y = y + resolution) {
 
       d = dist(x, y, mouseX, mouseY);
-
       c = map(d, 0, distance, 0, 255);
-
       noStroke();
       fill(0, c);
       rect(x, y, resolution, resolution);
     }
   }
+
+  if (keyIsPressed && key == ' ') {
+    
+    if (sound.isPlaying()) {
+      sound.pause();
+    } else {
+      sound.play();
+    }
+  }
+
 }
+
+
 
 function display(x, y, choice) {
   // tint(255,c);
