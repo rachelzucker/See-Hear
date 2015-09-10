@@ -90,7 +90,7 @@ function draw() {
       c = map(d, 0, distance, 0, 255);
       noStroke();
       fill(0, c);
-      rect(x, y, resolution, resolution);
+      rect(x, y, resolution-1, resolution-1);
     }
   }
 
