@@ -15,7 +15,7 @@ var finalCount;
 var c = 0;
 var d;
 
-var resolution = 20;
+var resolution = 16;
 
 var speed = 3.4;
 
